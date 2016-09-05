@@ -149,3 +149,8 @@ class HFOEnvironment(object):
   def statusToString(self, status):
     """ Returns a string representation of a game status """
     return hfo_lib.statusToString(status)
+
+  # my stuff
+  def getUnum(self):
+    """ Returns the uniform number """
+    return hfo_lib.getUnum()
