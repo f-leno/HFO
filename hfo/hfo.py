@@ -74,6 +74,9 @@ hfo_lib.actionToString.argtypes = [c_int]
 hfo_lib.actionToString.restype = c_char_p
 hfo_lib.statusToString.argtypes = [c_int]
 hfo_lib.statusToString.restype = c_char_p
+hfo_lib.statusToString.argtypes = [c_int]
+hfo_lib.getUnum.argtypes = None
+hfo_lib.getUnum.restype = c_int
 
 class HFOEnvironment(object):
   def __init__(self):
@@ -150,7 +153,9 @@ class HFOEnvironment(object):
     """ Returns a string representation of a game status """
     return hfo_lib.statusToString(status)
 
-  # my stuff
   def getUnum(self):
-    """ Returns the uniform number """
-    return hfo_lib.getUnum()
+    """ Returns the Unum """
+    return hfo_lib.getUnum(self.obj)
+
+
+

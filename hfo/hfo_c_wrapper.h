@@ -5,7 +5,7 @@
 #include <string.h>
 #include <HFO.hpp>
 #include <common.hpp>
-
+ 
 extern "C" {
   hfo::HFOEnvironment* HFO_new() { return new hfo::HFOEnvironment(); }
   void HFO_del(hfo::HFOEnvironment *hfo) { delete hfo; }
@@ -47,10 +47,9 @@ extern "C" {
     StatusToString(status); // TODO: OSX requires two calls...?!
     return StatusToString(status).c_str();
   }
-
-  // my stuff get agent ID
-  int getUnum(hfo::HFOEnvironment *hfo) { return hfo->getUnum(); }
-
+  int getUnum(hfo::HFOEnvironment *hfo){
+     return hfo->getUnum();
+  }
 }
 
 #endif

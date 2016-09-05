@@ -17,7 +17,6 @@
 
 using namespace hfo;
 
-#define MAX_STEPS 100
 
 HFOEnvironment::HFOEnvironment() {
   client = new rcsc::BasicClient();
