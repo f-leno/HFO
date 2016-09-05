@@ -20,13 +20,9 @@ def main():
     status = IN_GAME
     while status == IN_GAME:
       # Grab the state features from the environment
-      print "------"+str(hfo.getUnum())
+
       features = hfo.getState()
 
-      hfo.say(ctypes.c_char_p('Hello!'))
-     # hfo.say('Hello!')
-      #time.sleep(0.1)
-      # Get any incoming communication
       msg = hfo.hear()
       # Print the incoming communication
       if msg:
@@ -34,9 +30,10 @@ def main():
       # Take an action
       hfo.act(MOVE)
       # Create outgoing communication
-      
+      hfo.say('Hello!')
       # Advance the environment and get the game status
       status = hfo.step()
+    # Check the outcome of the episode
     # Check the outcome of the episode
     print('Episode %d ended with %s'%(episode, hfo.statusToString(status)))
     # Quit if the server goes down

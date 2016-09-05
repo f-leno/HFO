@@ -35,9 +35,14 @@ def main():
   hfo.connectToServer(HIGH_LEVEL_FEATURE_SET,
                       '/home/leno/HFO/HFO-master/bin/teams/base/config/formations-dt', 6000,
                       'localhost', 'base_left', False)
+                     
+  goalsAllTrials = 0.0
+  totalTimeToGoal = 0.0
   for episode in itertools.count():
+    numSteps =  0
     status = IN_GAME
     while status == IN_GAME:
+      numSteps = numSteps+1
       # Get the vector of state features for the current state
       state = hfo.getState()
       # Perform the action
@@ -48,13 +53,13 @@ def main():
       # Advance the environment and get the game status
       status = hfo.step()
       
-      print "Reward:  "+srt(getReward(status));
+     # print "Reward:  "+str(getReward(status));
       
       
-      if(status == CAPTURED_BY_DEFENSE):
-          print("LOST")
-      elif(status==GOAL):
-          print("WIN")
+      if(status==GOAL):
+          goalsAllTrials = goalsAllTrials+1
+          totalTimeToGoal = totalTimeToGoal + numSteps         
+     
 
           
     # Check the outcome of the episode
@@ -63,7 +68,9 @@ def main():
     if status == SERVER_DOWN:
       hfo.act(QUIT)
       break
-  
+   
+  print "Goal Percentage:  "+str(goalsAllTrials/episode*100)
+  print "Time to Goal:     "+str(totalTimeToGoal/episode)
     
         
 def getReward(status):
